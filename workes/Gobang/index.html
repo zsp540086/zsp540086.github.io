@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    canvas{
+        border:3px solid #000;
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        margin:auto;
+        background: #abc;
+    }
+    .text,.save{
+        width:90px;
+        height:50px;
+        background: #339DE4;
+        border-radius:5px;
+        position:absolute;
+        top:50px;
+        left:20px;
+        text-align: center;
+        line-height: 50px;
+        font-size:20px;
+        color:#fff;
+    }
+    .result{
+        width:250px;
+        height:100px;
+        background: #339DE4;
+        border-radius:5px;
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        margin:auto;
+        z-index: 10;
+        text-align: center;
+        display:none;
+    }
+    .infor{
+        width:100px;
+        height:50px;
+        margin:auto;
+        margin-top: 10px;
+    }
+    button{
+        outline: none;
+        border:none;
+        font-size:15px;
+        padding:5px;
+        border-radius:5px;
+        margin:0 15px;
+    }
+    .save{
+        width:auto;
+        top:120px;
+        padding:5px;
+        background: #339DE4;
+        cursor:pointer;
+    }
+    .shadow{
+        width:600px;
+        height:600px;
+        background: #abc;
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        margin:auto;
+        box-shadow: 0 0 0 900px rgba(0,0,0,.9);
+        z-index: 999;
+        transform:scale(0,0);
+        transition:all .8s;
+    }
+    .shadow.active{
+        transform:scale(1,1);
+    }
+    .download{
+        position:absolute;
+        bottom:0px;
+        right:-10px;
+        z-index: 9999;
+        font-sie:20px;
+        background: #339DE4;
+        color:#ffffff;
+    }
+</style>
+<body>
+    <canvas width="600" height="600"></canvas>
+    <div class="text">信息显示</div>
+    <div class="result">
+        <div class="infor">恭喜黑棋胜利</div>
+        <button class="continue">继续</button>
+        <button class="cancel">退出</button>
+    </div>
+    <div class="save">保存胜利成果</div>
+    <div class="shadow">
+        <button class="download">下载</button>
+    </div>
+</body>
+</html>
+<script>
+    var can=document.querySelector('canvas');
+    var ctx=can.getContext('2d');
+    var text=document.querySelector('.text');
+    var result=document.querySelector('.result');
+    var infor=document.querySelector('.infor');
+    var con=document.querySelector('.continue');
+    var cancel=document.querySelector('.cancel');
+    var shadow=document.querySelector('.shadow');
+    var save=document.querySelector('.save');
+    var download=document.querySelector('.download');
+    var flag1=true;
+    //****************************************第一步 画棋盘******************************************8//
+    start();
+    function start() {
+        var flag=true;
+        var arr={};
+        ctx.beginPath();
+        for (var i = 0; i < 15; i++) {
+            ctx.moveTo(line(0), line(i));
+            ctx.lineTo(line(14), line(i));
+            ctx.moveTo(line(i), line(0));
+            ctx.lineTo(line(i), line(14));
+        }
+        ctx.closePath();
+        ctx.stroke();
+        //line();
+        function line(n) {
+            return 40 * n + 20;
+        }
+
+        //**************************************第二步 标志 小棋子*************************************//
+        circle(line(7), line(7));
+        circle(line(3), line(3));
+        circle(line(11), line(3));
+        circle(line(3), line(11));
+        circle(line(11), line(11));
+        //circle()
+        function circle(x, y) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.beginPath();
+            ctx.arc(0, 0, 5, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        //******************************************第三步 开始下棋******************************************//
+        /*
+        * 棋子的位置
+        * 棋子的颜色 需要开关 默认黑棋先走
+        * 判断输赢  一条线上的相同颜色的棋子的个数   分四个方向row col leftSlant rightSlant 最终四个方向的最大值达到5就胜利
+        *
+        * */
+        can.onclick= function(e){
+            //关键是判断棋子放置的位置 棋子大小40。
+            var sx= Math.floor(e.offsetX/40), sy = Math.floor(e.offsetY/40);
+            //位置已经有棋子的 不能在放置棋子。
+            if(arr[m(sx,sy)]){
+             return;
+             }
+            if(flag){
+                if(check(sx,sy, "#000000")==5){
+                    result.style.display='block';
+                    infor.innerText= '恭喜黑棋胜利';
+                };
+                drawChess(sx,sy, '#000000');
+                text.innerText='黑棋已走';
+            }else{
+                if(check(sx,sy, "#ffffff")==5){
+                    result.style.display='block';
+                    infor.innerText='恭喜白棋胜利';
+                };
+                drawChess(sx,sy, '#ffffff');
+                text.innerText='白棋已走';
+            }
+        }
+        //******************************************************************************************************//
+        //drawChess();参数 坐标：1,1   1,2  等
+        function drawChess(x,y,color){
+            ctx.save();
+            ctx.translate(line(x),line(y));
+            ctx.beginPath();
+            ctx.arc(0,0,20,0, Math.PI *2);
+            ctx.closePath();
+            ctx.fillStyle=color;
+            ctx.fill();
+            ctx.restore();
+            flag=!flag;
+            arr[m(x,y)]=color;
+        }
+        function m(x,y){
+            return `${x}_${y}`;
+        }
+        function check(x,y, color){
+            var index= 1;
+            //水平
+            var row= 1;
+            while(arr[m(x+ index,y)]== color){
+                row++;
+                index++;
+            }
+            index=1;
+            while(arr[m(x- index,y)] == color){
+                row++;
+                index++;
+            }
+            //竖直
+            var col=1;
+            while(arr[m(x,y+ index)]== color) {
+                col++;
+                index++;
+            }
+            index=1;
+            while(arr[m(x,y- index)]== color) {
+                col++;
+                index++;
+            }
+            //右斜 right slant
+            var rs=1;
+            while(arr[m(x+index, y+ index)]== color) {
+                rs++;
+                index++;
+            }
+            index=1;
+            while(arr[m(x-index, y- index)]== color) {
+                rs++;
+                index++;
+            }
+            //右斜 right slant
+            var ls=1;
+            while(arr[m(x-index, y+ index)]== color) {
+                ls++;
+                index++;
+            }
+            index=1;
+            while(arr[m(x+index, y- index)]== color) {
+                ls++;
+                index++;
+            }
+            return Math.max(row,col,rs,ls);
+        }
+        //*******************************************************************************************//
+        save.onclick=function(){
+            if(flag1){
+                return;
+            }
+            shadow.classList.toggle('active');
+            var data=can.toDataURL('image/png');
+            var img=new Image();
+            img.src=data;
+            img.onload=function(){
+                shadow.appendChild(img);
+            }
+            download.onclick=function(){
+                var dl=data.replace('data:image/png','data:stream/octet');
+                location.href=dl;
+                flag1=true;
+                shadow.style.transform='scale(0,0)';
+            }
+            ctx.clearRect(10,10,600,600);
+            start();
+        }
+    }
+    //*********************************************//
+    con.onclick=function(){
+        result.style.display='none';
+        ctx.clearRect(10,10,600,600);
+        start();
+        text.innerText='信息显示'
+    }
+    cancel.onclick=function(){
+        result.style.display='none';
+        flag1=!flag1;
+    }
+</script>

@@ -1,0 +1,223 @@
+*{
+    margin:0;
+    padding:0;
+    list-style: none;
+    box-sizing: border-box;
+}
+html,body{
+    width:100%;
+    height:100%;
+    overflow: hidden;
+    background-image: url(../images/2.jpg);
+    background-position: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+audio{
+    display:none;
+}
+.box{
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,.5);
+    position:absolute;
+    top:0;
+    left:0;
+}
+.show{
+    width:500px;
+    height:450px;
+    margin:15px auto;
+    text-align: center;
+    overflow:hidden;
+    /*transform: translateX(165px);*/
+    position:relative;
+}
+.imgbox{
+    width:200px;
+    height:200px;
+    border-radius: 50%;
+    position:absolute;
+    left:0px;
+    top:65px;
+    overflow:hidden;
+    animation: move 3s ease-in-out infinite;
+}
+.imgbox>img{
+    display:block;
+    width:200px;
+    height:200px;
+}
+@keyframes move {
+    from{
+        transform:rotateZ(0deg);
+    }
+    to{
+        transform:rotateZ(360deg);
+    }
+}
+.text{
+    position:absolute;
+    width:217px;
+    height:185px;
+    left:0px;
+    bottom:0px;
+    text-align: center;
+}
+.text>.infor,.text>.infor1{
+    font-size: 16px;
+    color:#55a532;
+    margin:10px 0;
+    font-weight: bold;
+}
+.show>.song,.show>.author{
+    font-size: 20px;
+    color:#fff;
+    font-weight:bold;
+    margin:5px 0 0 190px;
+}
+.lyrics{
+    width:300px;
+    height:100%;
+    float:right;
+}
+.lyrics>li{
+    padding:8px 0;
+    color:#fff;
+}
+#hot{
+    color: #09A3DC;
+}
+.grow{
+    width:500px;
+    height:20px;
+    text-align: center;
+    line-height: 20px;
+    position:absolute;
+    bottom:130px;
+    left:0px;
+    right:0px;
+    margin:auto;
+}
+.grow>.left{
+    float:left;
+    color:#fff;
+    margin-right: 4px;
+}
+.grow>.right{
+    float:right;
+    color:#fff;
+}
+.grow>.start{
+    width:400px;
+    height:2px;
+    background: #484848;
+    margin:9px 0px 0px 9px;
+    float:left;
+    position:relative;
+}
+.move{
+    width:0px;
+    height:2px;
+    background: #339DE4;
+    position:absolute;
+    left:0;
+    top:0;
+}
+.circle{
+    width:10px;
+    height:10px;
+    background:#339DE4 ;
+    border-radius: 50%;
+    position:absolute;
+    top:-4px;
+    right:0px;
+}
+.control{
+    position:absolute;
+    left:0px;
+    bottom:32px;
+    right:0px;
+    margin:auto;
+    width:439px;
+    height:80px;
+}
+.control>li{
+    float:left;
+    width:65px;
+    height:65px;
+}
+.control>li>img{
+    display:block;
+    width:100%;
+}
+.control li:nth-child(2){
+    width:75px;
+    transform: translateY(-10px);
+    margin:0 28px;
+}
+.control li:nth-child(3){
+    transform: translateY(2px);
+}
+.icon-zanting:before,.icon-tushujiemianshangyiqu40:before,.icon-tushujiemianxiayiqu40:before{
+    font-size: 30px;
+    color:#fff;
+}
+.icon-zanting:before,.icon-zanting1:before{
+    font-size: 45px;
+}
+.icon-jingyin:before{
+    font-size:25px;
+    color:#fff;
+}
+.icon-yinliang:before{
+    font-size:25px;
+    color:#fff;
+    margin-left:34px;
+}
+.control li:last-child{
+    transform:translateY(5px);
+}
+.volume{
+    width:100px;
+    height:3px;
+    background: #fff;
+    position:absolute;
+    right:10px;
+    top:12px;
+}
+.volume>.volume-press{
+    width:50px;
+    height:100%;
+    background: #339DE4;
+    position:absolute;
+    left:0;
+    top:0;
+}
+.volume>.volume-btn{
+    width:10px;
+    height:10px;
+    background: #339DE4;
+    border-radius: 50%;
+    position:absolute;
+    left:50px;
+    top:-4px;
+    cursor: pointer;
+}
+.other{
+    position:absolute;
+    left:0px;
+    bottom:30px;
+    right:0px;
+    margin:auto;
+    width:500px;
+    height:40px;
+    background: red;
+    line-height: 40px;
+}
+.icon-xin:before,.icon-iconfontttpodiconeps:before,.icon-xiazai4:before,.icon-bofangliebiao:before,.icon-gengduo:before{
+    font-size: 25px;
+    color:#fff;
+    float:left;
+}
+
