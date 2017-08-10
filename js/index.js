@@ -8,7 +8,7 @@ $(function(){
     setInterval(function(){
        $.fn.fullpage.moveSlideRight();
    }, 3000);
-    //´°¿Ú¿í¶ÈÐ¡ÓÚ1024³öÏÖ¹ö¶¯Ìõ
+    //ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½Ð¡ï¿½ï¿½1024ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½
     $(window).resize(function(){
         autoScrolling();
     });
@@ -22,7 +22,7 @@ $(function(){
     }
     autoScrolling();
 
-    //½ø¶ÈÌõ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     var can1=$('.can1')[0];
     skillProgress(can1,90,200,200,90);
     var can2=$('.can2')[0];
@@ -62,7 +62,7 @@ $(function(){
             ctx.fillText(`${n}%`,w/2,h/2);
         }
     }
-    //ÁªÏµÎÒÃÇ
+    //ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½
     window.requestAnimFrame = ( function() {
         return window.requestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
@@ -80,22 +80,22 @@ $(function(){
 
     can.width = cw;
     can.height = ch;
-    var circles = [];//Ô²ÐÎÁ£×Ó¼¯ºÏ
-    var rects = [];//Õý·½ÐÎÁ£×Ó¼¯ºÏ
-    var  triangles = [];//Èý½ÇÐÎÁ£×Ó¼¯ºÏ
+    var circles = [];//Ô²ï¿½ï¿½ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½
+    var rects = [];//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½
+    var  triangles = [];//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½
     var i = 0;
     var x = 0;
     var y = 0;
-    //Ô²ÐÎÁ£×Ó¶ÔÏó
+    //Ô²ï¿½ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½
     function Circle(x,y,r){
         this.x = x;
         this.y = y;
         this.r = r;
-        //ËÙ¶È£ºËÙ¶ÈÖµ ·½Ïò
+        //ï¿½Ù¶È£ï¿½ï¿½Ù¶ï¿½Öµ ï¿½ï¿½ï¿½ï¿½
         this.speed = Math.random()*0.5+0.1;
         this.direction = Math.random()*Math.PI*2;
     }
-    //ÒÆ¶¯Ô²ÐÎÁ£×Ó
+    //ï¿½Æ¶ï¿½Ô²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     Circle.prototype.update = function(){
         this.x += Math.cos(this.direction)*this.speed;
         this.y += Math.sin(this.direction)*this.speed;
@@ -118,7 +118,7 @@ $(function(){
             this.direction = this.direction-Math.PI/2;
         }
     }
-    //»æÖÆÔ²ÐÎÁ£×Ó
+    //ï¿½ï¿½ï¿½ï¿½Ô²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     var mark = false;
     var a = 0.4;
     var timer = null;
@@ -157,13 +157,13 @@ $(function(){
     }
 
 
-    //Õý·½ÐÎÁ£×Ó¶ÔÏó
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½
     function Rect(x,y,w,h){
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-        //Õý·½ÐÎµÄÖÐÐÄ×ø±ê³õÊ¼Öµ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼Öµ
         this.x0 = Math.random()*cw;
         this.y0 = Math.random()*ch;
         this.speed = Math.random()*0.5+0.1;
@@ -192,7 +192,7 @@ $(function(){
             this.direction = this.direction - Math.PI;
         }
     }
-    //»æÖÆ³öÕý·½ÐÎÁ£×Ó
+    //ï¿½ï¿½ï¿½Æ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     Rect.prototype.draw = function(){
         cxt.save();
         cxt.translate(this.x0,this.y0);
@@ -210,7 +210,7 @@ $(function(){
         cxt.restore();
     }
 
-    //Èý½ÇÐÎÁ£×Ó¶ÔÏó
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½
     function  Triangle(x1,y1,x2,y2,x3,y3){
         this.x1 = x1;
         this.y1 = y1;
@@ -218,7 +218,7 @@ $(function(){
         this.y2 = y2;
         this.x3 = x3;
         this.y3 = y3;
-        //Èý½ÇÐÎµÄÖÐÐÄ×ø±ê
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         this.x0 = Math.random()*cw;
         this.y0 = Math.random()*ch;
         this.speed = Math.random()*0.5+0.1;
@@ -226,7 +226,7 @@ $(function(){
         this.angle = Math.random()*Math.PI;
         this.r = distance(this.x1,this.y1,this.x2,this.y2)/2/Math.cos(Math.PI/6);
     }
-    //Ðý×ªÈý½ÇÐÎÁ£×Ó
+    //ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     Triangle.prototype.update = function(){
         this.x1 = this.x0 + Math.cos(this.angle)*this.r;
         this.y1 = this.y0 + Math.sin(this.angle)*this.r;
@@ -256,7 +256,7 @@ $(function(){
             this.direction = this.direction - Math.PI;
         }
     }
-    //»æÖÆÈý½ÇÐÎÁ£×Ó
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     Triangle.prototype.draw = function(){
         cxt.beginPath();
         cxt.moveTo(this.x1,this.y1);
@@ -272,26 +272,26 @@ $(function(){
         cxt.fillStyle = "#f40";
         cxt.fill();
     }
-    //Ìí¼ÓÁ£×Ó¸öÊý
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½
     function addParticles(){
         var counts = 100;
         while (counts--)
         {
             var w = Math.random()*cw;
             var h = Math.random()*ch;
-            //Ìí¼ÓÔ²ÐÎÁ£×Ó¶ÔÏó
+            //ï¿½ï¿½ï¿½Ô²ï¿½ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½
             circles.push(new Circle(w,h,5));
             rects.push(new Rect(5,-5,10,10));
             triangles.push(new Triangle(w,h,w+10,h,w+5,h-5*Math.tan(Math.PI/3)));
         }
     }
 
-    //¹´¹É¶¨Àí¼ÆËã³¤¶È
+    //ï¿½ï¿½ï¿½É¶ï¿½ï¿½ï¿½ï¿½ï¿½ã³¤ï¿½ï¿½
     function distance(sx,sy,tx,ty){
         var x = tx - sx, y = ty - sy;
         return Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
     }
-    //Êó±ê×ø±êÎ»ÖÃ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
     document.onmousemove = function(ev){
         var ev = ev || window.event;
         x = ev.pageX;
@@ -299,7 +299,7 @@ $(function(){
     }
     function loop(){
         requestAnimFrame(loop);
-        //ÏÔÊ¾ºóÃæ»æÖÆµÄÔªËØ
+        //ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½Ôªï¿½ï¿½
         i++;
         if (i>10000)
         {
@@ -307,10 +307,10 @@ $(function(){
         }
         cxt.globalCompositeOperation = 'destination-out';
         cxt.fillStyle = 'rgba(0, 0, 0, 1)';
-        //Í¸Ã÷¶È
+        //Í¸ï¿½ï¿½ï¿½ï¿½
         cxt.globalAlpha = 1;
         cxt.fillRect( 0, 0, cw, ch );
-        //ÏÔÊ¾ÖØµþ²¿·Ö
+        //ï¿½ï¿½Ê¾ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½
         cxt.globalCompositeOperation = 'lighter';
         cxt.globalAlpha = a;
         var n = circles.length;
